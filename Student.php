@@ -15,12 +15,12 @@ class Student {
     $this->last_name = $last_name;
   }
 
-  function Student($id, $first_name, $last_name, $email) {
+  /*function Student($id, $first_name, $last_name, $email) {
     $this->id = $id;
     $this->first_name = $first_name;
     $this->last_name = $last_name;
     $this->email = $email;
-  }
+  }*/
 
   function to_string(){
   	return "{$this->id}:{$this->first_name}:{$this->last_name}:{$this->email}";
@@ -28,10 +28,12 @@ class Student {
 
   function insert(){
   	$da = new DataAccess();
-  	$da->connect();
+  	$conn = $da->connect();
+
 
   	$sql = "INSERT INTO students (id, first_name, last_name, email)
-			VALUES (".$this->id.",".$this->$first_name.",".$this->$last_name.",".$this->$email.".)";
-	$result = $conn->query($sql);
+			VALUES ('$this->id','$this->first_name','$this->last_name','$this->email')";
+      echo $sql;
+	  $result = $conn->query($sql);
   }
 }
